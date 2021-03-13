@@ -1,2 +1,2 @@
-# DiscordBot-MangoBot-OSV
- Discord Bot - Mango Bot - Open Sourse Version
+# Mango Bot - OSV
+## Mango Bot - Open Sourse Version

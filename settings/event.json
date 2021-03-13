@@ -1,0 +1,11 @@
+{
+    "feedback":{
+        "enable": true,
+        "join":{
+            "channel": "807217188628987934"
+        },
+        "leave":{
+            "channel": "807217219884285952"
+        }
+    }
+}

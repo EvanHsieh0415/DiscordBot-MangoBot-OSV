@@ -1,11 +1,41 @@
 {
-    "feedback":{
-        "enable": true,
-        "join":{
-            "channel": "807217188628987934"
-        },
-        "leave":{
-            "channel": "807217219884285952"
+    "on_ready": {
+        "feedback": {
+            "enable": true,
+            "channel":[
+                814811620206575677,
+                808247674620215326
+            ]
+        }
+    },
+    "807167051583979553":{
+        "guild_name": "Mango Bot",
+        "feedback":{
+            "enable": true,
+            "join":{
+                "channel": "807217188628987934"
+            },
+            "leave":{
+                "channel": "807217219884285952"
+            },
+            "load":{
+                "channel" : "814811620206575677"
+            }
+        }
+    },
+    "808241076657717268":{
+        "guild_name": "Mango Bot",
+        "feedback":{
+            "enable": true,
+            "join":{
+                "channel": "808248466329436170"
+            },
+            "leave":{
+                "channel": "808248529763958784"
+            },
+            "load":{
+                "channel" : "808247674620215326"
+            }
         }
     }
 }

@@ -10,8 +10,8 @@ with open('.\\settings\\event.json', 'r', encoding='utf8') as EventFile:
 class event(Cog_Extension):
     @commands.Cog.listener()
     async def on_member_join(self, member):
-        print(f'{member} join!')
-        channel = self.bot.get_channel(int(EventData['feedback']['join']['channel']))
+        print(f'{member} join {member.guild.name}!')
+        channel = self.bot.get_channel(int(EventData[str(member.guild.id)]['feedback']['join']['channel']))
         embed=discord.Embed(title=f"{member.name}跳進了伺服器！", description="0w0", color=0x5fff5c, timestamp=datetime.datetime.now(datetime.timezone.utc))
         embed.set_thumbnail(url=f"{member.avatar_url}")
         embed.add_field(name="本伺服器所有者是", value=f"{member.guild.owner}", inline=True)
@@ -20,8 +20,8 @@ class event(Cog_Extension):
     
     @commands.Cog.listener()
     async def on_member_remove(self, member):
-        print(f'{member} leave!')
-        channel = self.bot.get_channel(int(EventData['feedback']['leave']['channel']))
+        print(f'{member} leave {member.guild.name}!!')
+        channel = self.bot.get_channel(int(EventData[str(member.guild.id)]['feedback']['leave']['channel']))
         embed=discord.Embed(title=f"{member.name} 離開了伺服器...", color=0xff0000, timestamp=datetime.datetime.now(datetime.timezone.utc))
         embed.set_thumbnail(url=f"{member.avatar_url}")
         await channel.send(embed=embed)

@@ -3,8 +3,8 @@ import json
 import os
 from discord.ext import commands
 
-with open('.\\settings\\channel.json', 'r', encoding='utf8') as ChannelFile:
-    ChannelData = json.load(ChannelFile)
+with open('.\\settings\\event.json', 'r', encoding='utf8') as EventFile:
+    EventData = json.load(EventFile)
 with open('.\\settings\\token.json', 'r', encoding='utf8') as TokenFile:
     TokenData = json.load(TokenFile)
 
@@ -14,8 +14,10 @@ bot = commands.Bot(command_prefix= 'mb> ', intents = intents)
 @bot.event  
 async def on_ready():
     print('>> Mango Bot OSV is online <<')
-    channel = bot.get_channel(int(ChannelData['feedback']['channel']))
-    await channel.send('>> Mango Bot OSV is online <<')
+    if EventData['on_ready']['feedback']['enable'] == True:
+        for i in EventData['on_ready']['feedback']['channel']:
+            channel = bot.get_channel(i)
+            await channel.send('>> Mango Bot OSV is online <<')
 
 for Filename in os.listdir('.\\commands'):
     if Filename.endswith('.py'):

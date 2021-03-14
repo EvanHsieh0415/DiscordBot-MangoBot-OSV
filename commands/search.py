@@ -7,7 +7,7 @@ from core.classes import Cog_Extension
 with open('.\\settings\\search.json', 'r', encoding='utf8') as SearchFile:
     SearchData = json.load(SearchFile)
 
-def Search(search_type, ctx, arg:str=''):
+def Search(search_type, ctx, arg):
     if search_type in SearchData['search_list']:
         Picture = SearchData['search_image'][search_type]
         en_name = SearchData['search_name'][search_type]['en_name']
@@ -18,7 +18,7 @@ def Search(search_type, ctx, arg:str=''):
             embed=discord.Embed(title=f'{en_name} | {zh_name}', description=f'[Click me | 點我]({Link})', timestamp=datetime.datetime.now(datetime.timezone.utc))
             embed.set_author(name=f'{en_name} Website | {zh_name}主頁', icon_url=Picture)
         else:
-            Link = SearchData['search_link'][search_type]+SearchData['search_prefix'][search_type]+arg
+            Link = SearchData['search_link'][search_type] + SearchData['search_prefix'][search_type] + arg
             embed=discord.Embed(title=f'{arg}', description=f'[Click me | 點我]({Link})', timestamp=datetime.datetime.now(datetime.timezone.utc))
             embed.set_author(name=f'{en_name} Search | {zh_name}搜尋', icon_url=Picture)
 

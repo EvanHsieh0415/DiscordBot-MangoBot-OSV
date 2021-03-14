@@ -1,28 +1,28 @@
 {
     "search_list":[
         "google",
-        "wiki"
+        "wikipedia"
     ],
     "search_name":{
         "google":{
             "zh_name": "谷歌",
             "en_name": "Google"
         },
-        "wiki":{
+        "wikipedia":{
             "zh_name": "維基百科",
             "en_name": "Wikipedia"
         }
     },
     "search_image":{
         "google": "https://i.imgur.com/bM31b3K.png",
-        "wiki": "https://i.imgur.com/UMaBtez.png"
+        "wikipedia": "https://i.imgur.com/UMaBtez.png"
     },
     "search_link":{
         "google": "http://www.google.com",
-        "wiki": "https://zh.wikipedia.org"
+        "wikipedia": "https://zh.wikipedia.org"
     },
     "search_prefix":{
         "google": "/search?q=",
-        "wiki": "/w/index.php?search="
+        "wikipedia": "/w/index.php?search="
     }
 }

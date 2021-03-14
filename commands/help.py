@@ -13,7 +13,14 @@ def help_menu(cmds, lang):
             text = '> `mail` - mb> mail [Channel ID] [Message]\n> send [Message] to [Channel ID]'
         elif cmds == 'pipe_mail':
             text = '> `pipe_mail` - mb> mail [Pipe Number] [Message]\n > Send [Message] through Pipe [Pipe Number]'
-        return text
+    elif lang == 'zh_tw':
+        if cmds == 'all':
+            pass
+        elif cmds == 'mail':
+            text = '> `mail` - mb> mail [Channel ID] [Message]\n> 傳送 [Message] 到 [Channel ID]'
+        elif cmds == 'pipe_mail':
+            text = '> `pipe_mail` - mb> mail [Pipe Number] [Message]\n > 透過管道[Pipe Number] 傳送訊息 [Message]'
+    return text
 
 class help(Cog_Extension):
     @commands.command()

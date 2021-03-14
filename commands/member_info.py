@@ -1,7 +1,5 @@
-from typing import ChainMap, Text
 import discord
 import json
-import datetime
 from discord.ext import commands
 from core.classes import Cog_Extension
 

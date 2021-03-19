@@ -1,8 +1,6 @@
 import discord
 import json
 from discord.ext import commands
-from discord.ext.commands.core import command
-from discord.ext.commands.errors import CommandNotFound
 from core.classes import Cog_Extension
 
 def help_menu(cmds, lang):

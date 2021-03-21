@@ -1,0 +1,4 @@
+{
+    "on_message": false,
+    "list": ["a", "b", "c"]
+}

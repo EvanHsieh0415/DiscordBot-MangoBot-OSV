@@ -3,13 +3,15 @@ import json
 import os
 from discord.ext import commands
 
+not_load = ['test.py']
+
 with open('.\\settings\\event.json', 'r', encoding='utf8') as EventFile:
     EventData = json.load(EventFile)
 with open('.\\settings\\token.json', 'r', encoding='utf8') as TokenFile:
     TokenData = json.load(TokenFile)
 
 intents = discord.Intents.all()
-bot = commands.Bot(command_prefix= 'mb> ', intents = intents)
+bot = commands.Bot(command_prefix= 'mb> ', intents = intents, help_command=None)
 
 @bot.event  
 async def on_ready():
@@ -20,7 +22,7 @@ async def on_ready():
             await channel.send('>> Mango Bot OSV is online <<')
 
 for Filename in os.listdir('.\\commands'):
-    if Filename.endswith('.py'):
+    if Filename.endswith('.py') and Filename not in not_load:
         bot.load_extension(f'commands.{Filename[:-3]}')
 
 if __name__ == "__main__":

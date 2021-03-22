@@ -1,10 +1,12 @@
 import discord
-import json
+import json, os
 from discord.ext import commands
 from core.classes import Cog_Extension
 
 with open('.\\settings\\event.json', 'r', encoding='utf8') as EventFile:
     EventData = json.load(EventFile)
+
+not_load = ['test.py']
 
 def feedback(feedback_type, ctx, self, extension):
     if EventData[str(ctx.guild.id)]['feedback']['enable'] == True:
@@ -24,7 +26,7 @@ def feedback(feedback_type, ctx, self, extension):
 class load(Cog_Extension):
     @commands.command()
     async def load(self, ctx, extension):
-        print(f"load {extension}")
+        print(f'load {extension}')
         if extension == 'load':
             await ctx.channel.send(feedback('error', ctx, self, extension))
         else:
@@ -33,7 +35,7 @@ class load(Cog_Extension):
 
     @commands.command()
     async def unload(self, ctx, extension):
-        print(f"unload {extension}")
+        print(f'unload {extension}')
         if extension == 'load':
             await ctx.channel.send(feedback('error', ctx, self, extension))
         else:
@@ -42,12 +44,19 @@ class load(Cog_Extension):
 
     @commands.command()
     async def reload(self, ctx, extension):
-        print(f"reload {extension}")
+        print(f'reload {extension}')
         if extension == 'load':
             await ctx.channel.send(feedback('error', ctx, self, extension))
         else:
             self.bot.reload_extension(f'commands.{extension}')
             await ctx.channel.send(feedback('reload', ctx, self, extension))
+    
+    @commands.command()
+    async def ra(self, ctx):
+        print('reload all')
+        for Filename in os.listdir('.\\commands'):
+            if Filename.endswith('.py') and Filename not in not_load:
+                self.bot.reload_extension(f'commands.{Filename[:-3]}')
 
 def setup(bot):
     bot.add_cog(load(bot))

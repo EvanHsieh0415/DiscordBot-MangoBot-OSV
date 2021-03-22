@@ -20,6 +20,20 @@ def role_len(role_name:str, guild):
             role_list.append(member.name)
     return role_list
 
+def bot_list(guild):
+    bot_list = []
+    for i in guild.members:
+        if i.bot == True:
+            bot_list.append(i)
+    return bot_list
+
+def real_list(guild):
+    real_list = []
+    for i in guild.members:
+        if i.bot == False:
+            real_list.append(i)
+    return real_list
+
 class info(Cog_Extension):
     @commands.command()
     async def role(self, ctx, role_name:str=None):
@@ -49,14 +63,16 @@ class info(Cog_Extension):
         guild = ctx.guild
         member = discord.utils.get(guild.members, name=member_name)
         if member_name == None:
-            member_count = len(guild.members)
+            member_count = len(real_list(guild=guild))
+            member_bot_count = len(bot_list(guild=guild))
             member_online = len(member_status(member_status='online', guild=guild))
             member_idle = len(member_status(member_status='idle', guild=guild))
             member_dnd = len(member_status(member_status='dnd', guild=guild))
             member_offline = len(member_status(member_status='offline', guild=guild))
 
             embed=discord.Embed(description='Members')
-            embed.add_field(name='Count', value=f'{member_count}', inline=False)
+            embed.add_field(name='Member Count', value=f'{member_count}', inline=True)
+            embed.add_field(name='Bot Count', value=f'{member_bot_count}', inline=False)
             embed.add_field(name='Online', value=f'{member_online}', inline=True)
             embed.add_field(name='Idle', value=f'{member_idle}', inline=True)
             embed.add_field(name='Do Not Disturb', value=f'{member_dnd}', inline=True)

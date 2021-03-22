@@ -6,57 +6,80 @@ from core.classes import Cog_Extension
 with open('.\\settings\\event.json', 'r', encoding='utf8') as EventFile:
     EventData = json.load(EventFile)
 
-not_load = ['test.py']
+not_load = ['test.py', 'load.py']
 
-def feedback(feedback_type, ctx, self, extension):
+def channel_function(self, ctx):
+    global channel
+    channel = self.bot.get_channel(int(EventData[str(ctx.guild.id)]['feedback']['load']['channel']))
+    return channel
+
+def load_function(feedback_type, ctx, self, extension):
     if EventData[str(ctx.guild.id)]['feedback']['enable'] == True:
-        channel = self.bot.get_channel(int(EventData[str(ctx.guild.id)]['feedback']['load']['channel']))
-        if feedback_type == 'error':
+        if extension == 'load':
             feedback_str = f'{extension} 執行動作失敗, 該程式區塊為重要區塊 無法進行動作'
-        else:
-            if feedback_type == 'load':
-                zh_index = '載入'
-            elif feedback_type == 'unload':
-                zh_index = '卸載'
-            elif feedback_type == 'reload':
-                zh_index = '重新載入'
-            feedback_str = f'{zh_index} {extension} 完成'
+        elif feedback_type == 'load':
+            zh_index = '載入'
+            self.bot.load_extension(f'commands.{extension}')
+        elif feedback_type == 'unload':
+            zh_index = '卸載'
+            self.bot.unload_extension(f'commands.{extension}')
+        elif feedback_type == 'reload':
+            zh_index = '重新載入'
+            self.bot.reload_extension(f'commands.{extension}')
+        print(f'{zh_index} {extension}')
+        feedback_str = f'{zh_index} {extension} 完成'
         return feedback_str
+
+def load_all_function(feedback_type, ctx, self):
+    if EventData[str(ctx.guild.id)]['feedback']['enable'] == True:
+        if feedback_type == 'load':
+            zh_index = '載入'
+            for Filename in os.listdir('.\\commands'):
+                if Filename.endswith('.py') and Filename not in not_load:
+                    self.bot.load_extension(f'commands.{Filename[:-3]}')
+        elif feedback_type == 'unload':
+            zh_index = '卸載'
+            for Filename in os.listdir('.\\commands'):
+                if Filename.endswith('.py') and Filename not in not_load:
+                    self.bot.unload_extension(f'commands.{Filename[:-3]}')
+        elif feedback_type == 'reload':
+            zh_index = '重新載入'
+            for Filename in os.listdir('.\\commands'):
+                if Filename.endswith('.py') and Filename not in not_load:
+                    self.bot.reload_extension(f'commands.{Filename[:-3]}')
+        print(f'全部{zh_index} 完成')
+        return(f'全部{zh_index} 完成')
 
 class load(Cog_Extension):
     @commands.command()
-    async def load(self, ctx, extension):
-        print(f'load {extension}')
-        if extension == 'load':
-            await ctx.channel.send(feedback('error', ctx, self, extension))
-        else:
-            self.bot.load_extension(f'commands.{extension}')
-            await ctx.channel.send(feedback('load', ctx, self, extension))
+    async def l(self, ctx, extension):
+        channel = channel_function(self=self, ctx=ctx)
+        await channel.send(load_function(feedback_type='load', ctx=ctx, self=self, extension=extension))
 
     @commands.command()
-    async def unload(self, ctx, extension):
-        print(f'unload {extension}')
-        if extension == 'load':
-            await ctx.channel.send(feedback('error', ctx, self, extension))
-        else:
-            self.bot.unload_extension(f'commands.{extension}')
-            await ctx.channel.send(feedback('unload', ctx, self, extension))
+    async def u(self, ctx, extension):
+        channel = channel_function(self=self, ctx=ctx)
+        await channel.send(load_function(feedback_type='unload', ctx=ctx, self=self, extension=extension))
 
     @commands.command()
-    async def reload(self, ctx, extension):
-        print(f'reload {extension}')
-        if extension == 'load':
-            await ctx.channel.send(feedback('error', ctx, self, extension))
-        else:
-            self.bot.reload_extension(f'commands.{extension}')
-            await ctx.channel.send(feedback('reload', ctx, self, extension))
-    
+    async def r(self, ctx, extension):
+        channel = channel_function(self=self, ctx=ctx)
+        await channel.send(load_function(feedback_type='reload', ctx=ctx, self=self, extension=extension))
+
+    @commands.command()
+    async def la(self, ctx):
+        channel = channel_function(self=self, ctx=ctx)
+        await channel.send(load_all_function(feedback_type='load', ctx=ctx, self=self))
+
+    @commands.command()
+    async def ua(self, ctx):
+        channel = channel_function(self=self, ctx=ctx)
+        await channel.send(load_all_function(feedback_type='unload', ctx=ctx, self=self))
+
     @commands.command()
     async def ra(self, ctx):
-        print('reload all')
-        for Filename in os.listdir('.\\commands'):
-            if Filename.endswith('.py') and Filename not in not_load:
-                self.bot.reload_extension(f'commands.{Filename[:-3]}')
+        channel = channel_function(self=self, ctx=ctx)
+        await channel.send(load_all_function(feedback_type='reload', ctx=ctx, self=self))
 
 def setup(bot):
     bot.add_cog(load(bot))

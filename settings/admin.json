@@ -1,0 +1,6 @@
+{
+    "clean":{
+        "max_clean": 20,
+        "wait_sec": 5
+    }
+}

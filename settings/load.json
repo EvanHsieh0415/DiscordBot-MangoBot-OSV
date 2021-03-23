@@ -1,0 +1,6 @@
+{
+    "not_load":[
+        "test.py",
+        "load.py"
+    ]
+}

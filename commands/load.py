@@ -3,10 +3,11 @@ import json, os
 from discord.ext import commands
 from core.classes import Cog_Extension
 
-with open('.\\settings\\event.json', 'r', encoding='utf8') as EventFile:
+with open('.\\settings\\event.json', mode='r', encoding='utf8') as EventFile:
     EventData = json.load(EventFile)
 
-not_load = ['test.py', 'load.py']
+with open('.\\settings\\load.json', mode='r', encoding='utf8') as LoadFile:
+    LoadData = json.load(LoadFile)
 
 def channel_function(self, ctx):
     global channel
@@ -32,6 +33,7 @@ def load_function(feedback_type, ctx, self, extension):
 
 def load_all_function(feedback_type, ctx, self):
     if EventData[str(ctx.guild.id)]['feedback']['enable'] == True:
+        not_load = LoadData['not_load']
         if feedback_type == 'load':
             zh_index = '載入'
             for Filename in os.listdir('.\\commands'):

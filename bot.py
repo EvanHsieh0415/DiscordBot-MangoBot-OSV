@@ -1,17 +1,16 @@
 import discord
-import json
-import os
+import json, os
 from discord.ext import commands
 
 not_load = ['test.py']
 
-with open('.\\settings\\event.json', 'r', encoding='utf8') as EventFile:
+with open('.\\settings\\event.json', mode='r', encoding='utf8') as EventFile:
     EventData = json.load(EventFile)
-with open('.\\settings\\token.json', 'r', encoding='utf8') as TokenFile:
+with open('.\\settings\\token.json', mode='r', encoding='utf8') as TokenFile:
     TokenData = json.load(TokenFile)
 
 intents = discord.Intents.all()
-bot = commands.Bot(command_prefix= 'mb> ', intents = intents, help_command=None)
+bot = commands.Bot(command_prefix= 'mb>', intents = intents, help_command=None)
 
 @bot.event  
 async def on_ready():

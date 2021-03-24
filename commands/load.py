@@ -27,8 +27,8 @@ def load_function(feedback_type, ctx, self, extension):
         elif feedback_type == 'reload':
             zh_index = '重新載入'
             self.bot.reload_extension(f'commands.{extension}')
-        print(f'{zh_index} {extension}')
-        feedback_str = f'{zh_index} {extension} 完成'
+        print(f'【Bot】{zh_index} {extension}')
+        feedback_str = f'【Bot】{zh_index} {extension} 完成'
         return feedback_str
 
 def load_all_function(feedback_type, ctx, self):
@@ -49,8 +49,8 @@ def load_all_function(feedback_type, ctx, self):
             for Filename in os.listdir('.\\commands'):
                 if Filename.endswith('.py') and Filename not in not_load:
                     self.bot.reload_extension(f'commands.{Filename[:-3]}')
-        print(f'全部{zh_index} 完成')
-        zh_index = (f'全部{zh_index} 完成')
+        print(f'【Bot】全部{zh_index} 完成')
+        zh_index = (f'【Bot】全部{zh_index} 完成')
         return zh_index
 
 class load(Cog_Extension):

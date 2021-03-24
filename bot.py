@@ -11,8 +11,15 @@ with open('.\\settings\\setting.json', mode='r', encoding='utf8') as SettingFile
 with open('.\\settings\\token.json', mode='r', encoding='utf8') as TokenFile:
     TokenData = json.load(TokenFile)
 
-intents = discord.Intents.all()
-bot = commands.Bot(command_prefix= 'mb>', intents = intents)
+class sosCommand(commands.DefaultHelpCommand):
+    def __init__(self, **options):
+        super().__init__(**options)
+        self.command_attrs["name"] = "sos"
+        self.command_attrs["help"] = "幫助命令"
+
+bot = commands.Bot(command_prefix= 'mb>', 
+                   intents = discord.Intents.all(),
+                   help_command = sosCommand())
 
 @bot.event  
 async def on_ready():

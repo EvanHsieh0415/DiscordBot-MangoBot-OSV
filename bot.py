@@ -6,6 +6,8 @@ not_load = ['test.py']
 
 with open('.\\settings\\event.json', mode='r', encoding='utf8') as EventFile:
     EventData = json.load(EventFile)
+with open('.\\settings\\setting.json', mode='r', encoding='utf8') as SettingFile:
+    SettingData = json.load(SettingFile)
 with open('.\\settings\\token.json', mode='r', encoding='utf8') as TokenFile:
     TokenData = json.load(TokenFile)
 
@@ -18,7 +20,8 @@ async def on_ready():
     if EventData['on_ready']['feedback']['enable'] == True:
         for i in EventData['on_ready']['feedback']['channel']:
             channel = bot.get_channel(i)
-            await channel.send('>> Mango Bot OSV is online <<')
+            bot_name = SettingData['bot_name']
+            await channel.send(f'【Bot】**{bot_name}** is online')
 
 for Filename in os.listdir('.\\commands'):
     if Filename.endswith('.py') and Filename not in not_load:

@@ -12,7 +12,7 @@ with open('.\\settings\\token.json', mode='r', encoding='utf8') as TokenFile:
     TokenData = json.load(TokenFile)
 
 intents = discord.Intents.all()
-bot = commands.Bot(command_prefix= 'mb>', intents = intents, help_command=None)
+bot = commands.Bot(command_prefix= 'mb>', intents = intents)
 
 @bot.event  
 async def on_ready():

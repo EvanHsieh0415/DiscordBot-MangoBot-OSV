@@ -22,7 +22,7 @@ def help_menu(cmds, lang):
 
 class help(Cog_Extension):
     @commands.command()
-    async def help(self, ctx, cmd, lang):
+    async def help_(self, ctx, cmd, lang):
         await ctx.send(help_menu(cmds=cmd, lang=lang))
 
 def setup(bot):

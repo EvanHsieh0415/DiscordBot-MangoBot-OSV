@@ -50,7 +50,8 @@ def load_all_function(feedback_type, ctx, self):
                 if Filename.endswith('.py') and Filename not in not_load:
                     self.bot.reload_extension(f'commands.{Filename[:-3]}')
         print(f'全部{zh_index} 完成')
-        return(f'全部{zh_index} 完成')
+        zh_index = (f'全部{zh_index} 完成')
+        return zh_index
 
 class load(Cog_Extension):
     @commands.command()

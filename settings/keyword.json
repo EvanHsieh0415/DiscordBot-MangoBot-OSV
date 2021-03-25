@@ -1,9 +1,9 @@
 {
-    "press f":{
-        "keyword":[
+    "press f": {
+        "image": ".\\picture\\Press_F_to_Pay_Respects.png",
+        "keyword": [
             "f",
             "press f"
-        ],
-        "image": ".\\picture\\Press_F_to_Pay_Respects.png"
+        ]
     }
 }

@@ -1,4 +1,8 @@
 {
-    "on_message": false,
-    "list": ["a", "b", "c"]
+    "list": [
+        "a",
+        "b",
+        "c"
+    ],
+    "on_message": false
 }

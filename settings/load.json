@@ -1,5 +1,5 @@
 {
-    "not_load":[
+    "not_load": [
         "test.py",
         "load.py"
     ]

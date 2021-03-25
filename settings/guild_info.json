@@ -1,3 +1,10 @@
 {
-    "info": ["created_at", "id", "icon", "owner", "name", "member_count"]
+    "info": [
+        "created_at",
+        "id",
+        "icon",
+        "owner",
+        "name",
+        "member_count"
+    ]
 }

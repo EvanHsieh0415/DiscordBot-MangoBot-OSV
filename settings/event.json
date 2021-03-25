@@ -1,41 +1,41 @@
 {
-    "on_ready": {
+    "807167051583979553": {
         "feedback": {
             "enable": true,
-            "channel":[
-                814811620206575677,
-                808247674620215326
-            ]
-        }
-    },
-    "807167051583979553":{
-        "guild_name": "Mango Bot",
-        "feedback":{
-            "enable": true,
-            "join":{
+            "join": {
                 "channel": "807217188628987934"
             },
-            "leave":{
+            "leave": {
                 "channel": "807217219884285952"
             },
-            "load":{
-                "channel" : "814811620206575677"
+            "load": {
+                "channel": "814811620206575677"
             }
-        }
+        },
+        "guild_name": "Mango Bot"
     },
-    "808241076657717268":{
-        "guild_name": "猴子 程式交流會",
-        "feedback":{
+    "808241076657717268": {
+        "feedback": {
             "enable": true,
-            "join":{
+            "join": {
                 "channel": "808248466329436170"
             },
-            "leave":{
+            "leave": {
                 "channel": "808248529763958784"
             },
-            "load":{
-                "channel" : "808247674620215326"
+            "load": {
+                "channel": "808247674620215326"
             }
+        },
+        "guild_name": "猴子 程式交流會"
+    },
+    "on_ready": {
+        "feedback": {
+            "channel": [
+                814811620206575677,
+                808247674620215326
+            ],
+            "enable": true
         }
     }
 }

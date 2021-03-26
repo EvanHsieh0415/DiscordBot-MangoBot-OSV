@@ -35,29 +35,35 @@ class admin(Cog_Extension):
     @commands.group()
     async def set(self, ctx):
         pass
-
-    @set.command()
-    async def event(self, ctx, channel_type:str, setting=None):
-        with open('.\\settings\\event.json', mode='r', encoding='utf8') as EventFile:
-            EventData = json.load(EventFile)
-        if setting == None:
-            index = EventData[str(ctx.guild.id)]['feedback'][channel_type]['channel']
-            await ctx.send(f'`{ctx.guild.id}/feedback/{channel_type}/channel` :  `{index}`')
-        else:
-            EventData[str(ctx.guild.id)]['feedback'][channel_type]['channel'] = setting
-            with open('.\\settings\\event.json', mode='w', encoding='utf8') as EventFile:
-                json.dump(EventData, EventFile, sort_keys=True, indent=4, ensure_ascii=False)
-            await ctx.send(f'edit `{ctx.guild.id}/feedback/{channel_type}/channel` :  `{setting}`')
     
     @set.command()
     async def json(self, ctx):
+        await ctx.send('> json.dump Start')
         for Filename in os.listdir('.\\settings'):
             if Filename.endswith('.json'):
                 with open(f'.\\settings\\{Filename}', mode='r', encoding='utf8') as File:
                     Data = json.load(File)
                 with open(f'.\\settings\\{Filename}', mode='w', encoding='utf8') as File:
                     json.dump(Data, File, sort_keys=True, indent=4, ensure_ascii=False)
-                await ctx.send(f'json.dump {Filename}')
-        await ctx.send('json.dump all complete')
+                await ctx.send(f'json.dump `{Filename}`')
+                print(f'json.dump {Filename}')
+        await ctx.send('> json.dump all complete')
+    
+    @set.command()
+    async def event(self, ctx, set_type:str=None, ch_id:int=None):
+        with open('.\\settings\\event.json', mode='r', encoding='utf8') as EventFile:
+            EventData = json.load(EventFile)
+        if set_type == None:
+            text = EventData[ctx.guild.id]
+            await ctx.send(json.dump(text, sort_keys=True, indent=4, ensure_ascii=False))
+        else:
+            if set_type in EventData[str(ctx.guild.id)]['feedback']:
+                if set_type == 'join':
+                    EventData[str(ctx.guild.id)]['feedback']['join']['channel'] = ch_id
+                elif set_type == 'leave':
+                    EventData[str(ctx.guild.id)]['feedback']['leave']['channel'] = ch_id
+                print(f'{ctx.member.name} edit {ctx.guild.name}\'s {set_type} channel ID: {ch_id}')
+                await ctx.send(f'Edit {ctx.guild.name}\'s {set_type} channel ID: {ch_id}')
+
 def setup(bot):
     bot.add_cog(admin(bot))

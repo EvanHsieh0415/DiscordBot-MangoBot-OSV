@@ -16,7 +16,7 @@ bot = commands.Bot(command_prefix= 'mb>', intents = intents)
 
 @bot.event  
 async def on_ready():
-    print('>> Mango Bot OSV is online <<')
+    print('【Bot】>> Mango Bot OSV is online <<')
     if EventData['on_ready']['feedback']['enable'] == True:
         for i in EventData['on_ready']['feedback']['channel']:
             channel = bot.get_channel(i)

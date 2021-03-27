@@ -1,5 +1,5 @@
 import discord
-import json, random
+import random
 from discord.ext import commands
 from core.classes import Cog_Extension
 
@@ -33,6 +33,11 @@ class game(Cog_Extension):
     @drop.command()
     async def coin(self, ctx, member:str=None):
         await ctx.send('唉呦 好痛')
+    
+    @g.command()
+    async def r(self, ctx, ques):
+        pers = random.randint(0, 100)
+        await ctx.send(f'{ques}的機率是 {pers}%')
 
 def setup(bot):
     bot.add_cog(game(bot))

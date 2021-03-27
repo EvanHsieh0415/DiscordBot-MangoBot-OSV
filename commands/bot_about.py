@@ -11,7 +11,7 @@ class bot_about(Cog_Extension):
         embed.set_author(name='延遲') 
         embed.set_footer(text=f'由{ctx.author}請求的鏈接')
         await ctx.send(embed=embed)
-        print(f'{ctx.author} take bot\'s ping')
+        print(f'【Bot】{ctx.author} take bot\'s ping')
 
 
 def setup(bot):

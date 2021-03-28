@@ -75,7 +75,7 @@ class info(Cog_Extension):
             embed=discord.Embed(description='Members')
             embed.add_field(name='Member Count', value=f'{member_count}', inline=True)
             embed.add_field(name='Bot Count', value=f'{member_bot_count}', inline=True)
-            embed.add_field(name='&ensp;', value='&ensp;', inline=True)
+            embed.add_field(name='ﱞ', value='ﱞ', inline=True)
             embed.add_field(name='Online', value=f'{member_online}', inline=True)
             embed.add_field(name='Idle', value=f'{member_idle}', inline=True)
             embed.add_field(name='Do Not Disturb', value=f'{member_dnd}', inline=True)

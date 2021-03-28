@@ -17,7 +17,7 @@ class event(Cog_Extension):
     @commands.Cog.listener()
     async def on_member_join(self, member):
         print(f'{member} join {member.guild.name}!')
-        if EventData[member.guild.id]['feedback']['enable'] == True:
+        if EventData[str(member.guild.id)]['feedback']['enable'] == True:
             channel = channel_function(event_type='join', member=member, self=self)
             embed=discord.Embed(title=f"{member.name}跳進了伺服器！", description="0w0", color=0x5fff5c, timestamp=datetime.datetime.now(datetime.timezone.utc))
             embed.set_thumbnail(url=f"{member.avatar_url}")
@@ -28,7 +28,7 @@ class event(Cog_Extension):
     @commands.Cog.listener()
     async def on_member_remove(self, member):
         print(f'{member} leave {member.guild.name}!!')
-        if EventData[member.guild.id]['feedback']['enable'] == True:
+        if EventData[str(member.guild.id)]['feedback']['enable'] == True:
             channel = channel_function(event_type='leave', member=member, self=self)
             embed=discord.Embed(title=f"{member.name} 離開了伺服器...", color=0xff0000, timestamp=datetime.datetime.now(datetime.timezone.utc))
             embed.set_thumbnail(url=f"{member.avatar_url}")

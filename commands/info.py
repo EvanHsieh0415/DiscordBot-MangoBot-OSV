@@ -44,6 +44,8 @@ class info(Cog_Extension):
             
             embed=discord.Embed(description='Roles')
             embed.add_field(name='Count', value=role_count, inline=False)
+            for i in range(3):
+                embed.add_field(name='===', value='-----', inline=True)
             guild_roles = guild.roles
             for i in range(len(guild_roles)):
                 roles = guild_roles[i]
@@ -72,15 +74,16 @@ class info(Cog_Extension):
 
             embed=discord.Embed(description='Members')
             embed.add_field(name='Member Count', value=f'{member_count}', inline=True)
-            embed.add_field(name='Bot Count', value=f'{member_bot_count}', inline=False)
+            embed.add_field(name='Bot Count', value=f'{member_bot_count}', inline=True)
+            embed.add_field(name='&ensp;', value='&ensp;', inline=True)
             embed.add_field(name='Online', value=f'{member_online}', inline=True)
             embed.add_field(name='Idle', value=f'{member_idle}', inline=True)
             embed.add_field(name='Do Not Disturb', value=f'{member_dnd}', inline=True)
-            embed.add_field(name='Offline', value=f'{member_offline}', inline=False)
+            embed.add_field(name='Offline', value=f'{member_offline}', inline=True)
         else:
             embed=discord.Embed(title='', description=f'{member.mention}')
             embed.set_thumbnail(url=f'{member.avatar_url}')
-            embed.add_field(name='Nick', value=f'{member.name}', inline=True)
+            embed.add_field(name='Nick', value=f'{member.nick}', inline=True)
             embed.add_field(name='ID', value=f'{member.id}', inline=True)
             embed.add_field(name='Create at', value=f'{member.created_at}', inline=False)
             embed.add_field(name='Join at', value=f'{member.joined_at}', inline=False)

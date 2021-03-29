@@ -3,7 +3,7 @@ import json, datetime
 from discord.ext import commands
 from core.classes import Cog_Extension
 
-with open('.\\settings\\event.json', 'r', encoding='utf8') as EventFile:
+with open(r'.\settings\event.json', 'r', encoding='utf8') as EventFile:
     EventData = json.load(EventFile)
 
 def channel_function(event_type:str, member, self):

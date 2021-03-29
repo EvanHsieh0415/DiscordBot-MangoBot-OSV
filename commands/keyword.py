@@ -3,7 +3,7 @@ import json
 from discord.ext import commands
 from core.classes import Cog_Extension
 
-with open('.\\settings\\keyword.json', 'r', encoding='utf8') as KeywordFile:
+with open(r'.\settings\keyword.json', 'r', encoding='utf8') as KeywordFile:
     KeywordData = json.load(KeywordFile)
 
 class keyword(Cog_Extension):

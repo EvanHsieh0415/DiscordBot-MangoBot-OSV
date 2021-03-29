@@ -3,7 +3,7 @@ import json
 from discord.ext import commands
 from core.classes import Cog_Extension
 
-with open('.\\settings\\message_process.json', mode='r', encoding='utf8') as MessageFile:
+with open(r'.\settings\message_process.json', mode='r', encoding='utf8') as MessageFile:
     MessageData = json.load(MessageFile)
 
 class message_process(Cog_Extension):

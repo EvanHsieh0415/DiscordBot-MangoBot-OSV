@@ -11,7 +11,7 @@
                 "count": 1,
                 "name": "YT Mango",
                 "pass": true,
-                "verCode": "0722-6ad1-b996-35df"
+                "verCode": "f46f-3898-d7ba-46c0"
             },
             "506427205971214341": {
                 "count": 0,
@@ -58,6 +58,18 @@
             "714097627905523712": {
                 "count": 0,
                 "name": "ForTestingBot",
+                "pass": false,
+                "verCode": null
+            },
+            "776772423294648331": {
+                "count": 0,
+                "name": "(っ´▽｀)っ",
+                "pass": false,
+                "verCode": null
+            },
+            "799825257921511445": {
+                "count": 0,
+                "name": "多伺服器測試機器人",
                 "pass": false,
                 "verCode": null
             },

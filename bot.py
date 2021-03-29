@@ -4,11 +4,11 @@ from discord.ext import commands
 
 not_load = ['test.py']
 
-with open('.\\settings\\event.json', mode='r', encoding='utf8') as EventFile:
+with open(r'.\settings\event.json', mode='r', encoding='utf8') as EventFile:
     EventData = json.load(EventFile)
-with open('.\\settings\\setting.json', mode='r', encoding='utf8') as SettingFile:
+with open(r'.\settings\setting.json', mode='r', encoding='utf8') as SettingFile:
     SettingData = json.load(SettingFile)
-with open('.\\settings\\token.json', mode='r', encoding='utf8') as TokenFile:
+with open(r'.\settings\token.json', mode='r', encoding='utf8') as TokenFile:
     TokenData = json.load(TokenFile)
 
 intents = discord.Intents.all()

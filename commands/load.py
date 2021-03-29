@@ -3,10 +3,10 @@ import json, os
 from discord.ext import commands
 from core.classes import Cog_Extension
 
-with open('.\\settings\\event.json', mode='r', encoding='utf8') as EventFile:
+with open(r'.\settings\event.json', mode='r', encoding='utf8') as EventFile:
     EventData = json.load(EventFile)
 
-with open('.\\settings\\load.json', mode='r', encoding='utf8') as LoadFile:
+with open(r'.\settings\load.json', mode='r', encoding='utf8') as LoadFile:
     LoadData = json.load(LoadFile)
 
 def channel_function(self, ctx):

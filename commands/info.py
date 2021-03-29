@@ -3,7 +3,7 @@ import json
 from discord.ext import commands
 from core.classes import Cog_Extension
 
-with open('.\\settings\\guild_info.json', mode='r', encoding='utf8') as GuildinfoFile:
+with open(r'.\settings\guild_info.json', mode='r', encoding='utf8') as GuildinfoFile:
     GuildinfoData = json.load(GuildinfoFile)
 
 def member_status(member_status:str, guild):

@@ -1,6 +1,8 @@
 # Mango Bot - OSV
 
-### 使用[HackMD](https://hackmd.io)編輯, 鏈接:[點我](https://hackmd.io/@1Nu3C16PTwOrIMHaxi6u_Q/EvanHsieh0415)
+使用[HackMD](https://hackmd.io)編輯, 鏈接:[點我](https://hackmd.io/@1Nu3C16PTwOrIMHaxi6u_Q/EvanHsieh0415)
+
+---
 
 ###### tags: `Github` `Discord Bot` `HackMD` `Python`
 
@@ -9,7 +11,15 @@
 
 ---
 
-Mango Bot - Open Sourse Version
+> Mango Bot - Open Sourse Version | Mango Bot - 開源版本
+
+
+借鑒名單
+|Nick|Github|
+|-|-|
+|綠茶|[Proladon](https://github.com/Proladon)|
+|猴子|[a3510377](https://github.com/a3510377)|
+|AndyLonly|[AndyLonly](https://github.com/AndyLonly)|
 
 ```python=
 def mango():

@@ -5,6 +5,7 @@
 ###### tags: `Github` `Discord Bot` `HackMD` `Python`
 
 [![Github top language](https://img.shields.io/github/languages/top/EvanHsieh0415/DiscordBot-MangoBot-OSV?style=for-the-badge)](https://github.com/EvanHsieh0415/DiscordBot-MangoBot-OSV)
+[![Main Download](https://img.shields.io/badge/Download%20zip-Click%20Me-0dab1d?style=for-the-badge)](https://github.com/EvanHsieh0415/DiscordBot-MangoBot-OSV/archive/refs/heads/main.zip)
 
 ---
 

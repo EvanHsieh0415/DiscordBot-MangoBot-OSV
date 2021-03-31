@@ -5,6 +5,7 @@ from discord.ext import commands
 from core.classes import Cog_Extension
 
 class invite(Cog_Extension):
+    @commands.is_owner()
     @commands.command()
     async def vc_invite(self, ctx, vc_id:int, max_age:int=0, max_use:int=0, reason:str=''):
         channel = self.bot.get_channel(vc_id)

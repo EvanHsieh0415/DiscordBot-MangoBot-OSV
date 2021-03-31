@@ -54,31 +54,37 @@ def load_all_function(feedback_type, ctx, self):
         return zh_index
 
 class load(Cog_Extension):
+    @commands.is_owner()
     @commands.command()
     async def l(self, ctx, extension):
         channel = channel_function(self=self, ctx=ctx)
         await channel.send(load_function(feedback_type='load', ctx=ctx, self=self, extension=extension))
 
+    @commands.is_owner()
     @commands.command()
     async def u(self, ctx, extension):
         channel = channel_function(self=self, ctx=ctx)
         await channel.send(load_function(feedback_type='unload', ctx=ctx, self=self, extension=extension))
 
+    @commands.is_owner()
     @commands.command()
     async def r(self, ctx, extension):
         channel = channel_function(self=self, ctx=ctx)
         await channel.send(load_function(feedback_type='reload', ctx=ctx, self=self, extension=extension))
 
+    @commands.is_owner()
     @commands.command()
     async def la(self, ctx):
         channel = channel_function(self=self, ctx=ctx)
         await channel.send(load_all_function(feedback_type='load', ctx=ctx, self=self))
 
+    @commands.is_owner()
     @commands.command()
     async def ua(self, ctx):
         channel = channel_function(self=self, ctx=ctx)
         await channel.send(load_all_function(feedback_type='unload', ctx=ctx, self=self))
 
+    @commands.is_owner()
     @commands.command()
     async def ra(self, ctx):
         channel = channel_function(self=self, ctx=ctx)

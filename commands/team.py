@@ -7,6 +7,7 @@ with open(r'.\settings\team.json', mode='r', encoding='utf8') as TeamFile:
     TeamData = json.load(TeamFile)
 
 class team(Cog_Extension):
+    @commands.is_owner()
     @commands.group()
     async def t(self, ctx):
         if 't ' not in ctx.message.content and 't' in ctx.message.content:

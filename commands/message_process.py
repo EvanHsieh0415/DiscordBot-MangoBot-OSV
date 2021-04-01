@@ -35,7 +35,7 @@ class message_process(Cog_Extension):
             await ctx.send(f'{msg} 無法發送, 請確認通訊頻道是否正確')
     
     @commands.command()
-    async def dm(sellf, ctx, member:str=None, *, message:str=None):
+    async def dm(sellf, ctx, memberID:str=None, *, message:str=None):
         if member == None:
             await ctx.send('[ERROR] member not entered')
             print(f'[ERROR] member not endered ({ctx.author.name})')
@@ -43,10 +43,10 @@ class message_process(Cog_Extension):
             await ctx.send('[ERROR] message not entered')
             print(f'[ERROR] message not endered ({ctx.author.name})')
         else:
-            memberg = discord.utils.get(ctx.guild.members, name=member)
+            memberg = discord.utils.get(ctx.guild.members, id=memberID)
             if memberg == None:
-                await ctx.send(f'[ERROR] can not find member: `{member}`')
-                print(f'[ERROR] can not find member: {member}')
+                await ctx.send(f'[ERROR] can not find member: `{memberID}`')
+                print(f'[ERROR] can not find member: {memberID}')
             else:
                 await ctx.send(f'已成功傳送訊息給 `{memberg.name}`')
                 await member.send(message)

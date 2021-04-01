@@ -49,7 +49,7 @@ class message_process(Cog_Extension):
                 print(f'[ERROR] can not find member: {memberID}')
             else:
                 await ctx.send(f'已成功傳送訊息給 `{memberg.name}`')
-                await member.send(message)
+                await memberg.send(message)
                 print(f'{ctx.author.name} send msg to {memberg.name} success')
 
 def setup(bot):

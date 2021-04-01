@@ -36,7 +36,7 @@ class message_process(Cog_Extension):
     
     @commands.command()
     async def dm(sellf, ctx, memberID:int=None, *, message:str=None):
-        if member == None:
+        if memberID == None:
             await ctx.send('[ERROR] member not entered')
             print(f'[ERROR] member not endered ({ctx.author.name})')
         elif message == None:

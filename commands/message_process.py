@@ -54,4 +54,3 @@ class message_process(Cog_Extension):
 
 def setup(bot):
     bot.add_cog(message_process(bot))
-#

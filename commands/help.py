@@ -3,27 +3,16 @@ import json
 from discord.ext import commands
 from core.classes import Cog_Extension
 
-def help_menu(cmds, lang):
-    if lang == 'en_us':
-        if cmds == 'all':
-            pass
-        elif cmds == 'mail':
-            text = '> `mail` - mb> mail [Channel ID] [Message]\n> send [Message] to [Channel ID]'
-        elif cmds == 'pipe_mail':
-            text = '> `pipe_mail` - mb> mail [Pipe Number] [Message]\n > Send [Message] through Pipe [Pipe Number]'
-    elif lang == 'zh_tw':
-        if cmds == 'all':
-            pass
-        elif cmds == 'mail':
-            text = '> `mail` - mb> mail [Channel ID] [Message]\n> 傳送 [Message] 到 [Channel ID]'
-        elif cmds == 'pipe_mail':
-            text = '> `pipe_mail` - mb> mail [Pipe Number] [Message]\n > 透過管道[Pipe Number] 傳送訊息 [Message]'
-    return text
-
 class help(Cog_Extension):
     @commands.command()
-    async def help_(self, ctx, cmd, lang):
-        await ctx.send(help_menu(cmds=cmd, lang=lang))
+    async def help_(self, ctx, page:int):
+        maxpage = 2
+        if page == 1:
+            help_type = 'Game'
+        embed=discord.Embed(title=f'page: {page}', description=help_type)
+        embed.set_author(name='Help')
+        embed.set_footer(text=f'Page {page}/{maxpage}')
+        await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(help(bot))

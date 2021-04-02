@@ -50,14 +50,14 @@ class info(Cog_Extension):
             for i in range(len(guild_roles)):
                 roles = guild_roles[i]
                 if roles.name != '@everyone':
-                    embed.add_field(name=f'{guild_roles[i]}', value=len(roles.members), inline=True)
+                    embed.add_field(name=guild_roles[i], value=len(roles.members), inline=True)
         else:
             role_member_count = len(role.members)
-            embed=discord.Embed(description=f'{role.mention}')
-            embed.add_field(name='Members', value=f'{role_member_count}', inline=True)
-            embed.add_field(name='Position', value=f'{role.position}', inline=True)
-            embed.add_field(name='Color', value=f'{role.color}', inline=True)
-            embed.add_field(name='ID', value=f'{role.id}', inline=False)
+            embed=discord.Embed(description=role.mention)
+            embed.add_field(name='Members', value=role_member_count, inline=True)
+            embed.add_field(name='Position', value=role.position, inline=True)
+            embed.add_field(name='Color', value=role.color, inline=True)
+            embed.add_field(name='ID', value=role.id, inline=False)
         await ctx.send(embed=embed)
     
     @commands.command()
@@ -73,23 +73,48 @@ class info(Cog_Extension):
             member_offline = len(member_status(member_status='offline', guild=guild))
 
             embed=discord.Embed(description='Members')
-            embed.add_field(name='Member Count', value=f'{member_count}', inline=True)
-            embed.add_field(name='Bot Count', value=f'{member_bot_count}', inline=True)
+            embed.add_field(name='Member Count', value=member_count, inline=True)
+            embed.add_field(name='Bot Count', value=member_bot_count, inline=True)
             embed.add_field(name='ﱞ', value='ﱞ', inline=True)
-            embed.add_field(name='Online', value=f'{member_online}', inline=True)
-            embed.add_field(name='Idle', value=f'{member_idle}', inline=True)
-            embed.add_field(name='Do Not Disturb', value=f'{member_dnd}', inline=True)
-            embed.add_field(name='Offline', value=f'{member_offline}', inline=True)
+            embed.add_field(name='Online', value=member_online, inline=True)
+            embed.add_field(name='Idle', value=member_idle, inline=True)
+            embed.add_field(name='Do Not Disturb', value=member_dnd, inline=True)
+            embed.add_field(name='Offline', value=member_offline, inline=True)
         else:
-            embed=discord.Embed(title='', description=f'{member.mention}')
-            embed.set_thumbnail(url=f'{member.avatar_url}')
-            embed.add_field(name='Nick', value=f'{member.nick}', inline=True)
-            embed.add_field(name='ID', value=f'{member.id}', inline=True)
-            embed.add_field(name='Create at', value=f'{member.created_at}', inline=False)
-            embed.add_field(name='Join at', value=f'{member.joined_at}', inline=False)
-            embed.add_field(name='Status', value=f'{member.status}', inline=True)
-            embed.add_field(name='Activity', value=f'{member.activity}', inline=True)
-            embed.add_field(name='Bot', value=f'{member.bot}', inline=True)
+            embed=discord.Embed(title='', description=member.mention)
+            embed.set_thumbnail(url=member.avatar_url)
+            embed.add_field(name='Nick', value=member.nick, inline=True)
+            embed.add_field(name='ID', value=member.id, inline=True)
+            embed.add_field(name='Create at', value=member.created_at, inline=False)
+            embed.add_field(name='Join at', value=member.joined_at, inline=False)
+            embed.add_field(name='Status', value=member.status, inline=True)
+            embed.add_field(name='Activity', value=member.activity, inline=True)
+            embed.add_field(name='Bot', value=member.bot, inline=True)
+        await ctx.send(embed=embed)
+    
+    @commands.command()
+    async def channel(self, ctx, *, channel:str=None):
+        c = channel
+        if channel == None:
+            embed=discord.Embed(description='channel')
+            embed.add_field(name='Text', value=len(ctx.guild.text_channel), inline=True)
+            embed.add_field(name='Voice', value=len(ctx.guild.voice_channel), inline=True)
+        else:
+            channel = discord.utils.get(ctx.guild.channels, name=channel)
+            embed=discord.Embed(description=channel.name)
+            embed.add_field(name='Name', value=channel.name, inline=True)
+            embed.add_field(name='Channel Type', value=channel.type, inline=True)
+            embed.add_field(name='ID', value=channel.id, inline=False)
+            if channel.type == discord.ChannelType.text:
+                embed.add_field(name='Topic', value=channel.type, inline=True)
+                if channel.slowmode_delay == 0:
+                    slow = 'disable'
+                else:
+                    slow = channel.slowmode_delay
+                embed.add_field(name='Slowmode', value=slow, inline=True)
+            elif channel.type == discord.ChannelType.voice:
+                embed.add_field(name='Bitrate', value=channel.bitrate, inline=True)
+                embed.add_field(name='Max user', value=channel.user_limit, inline=True)
         await ctx.send(embed=embed)
 
 def setup(bot):

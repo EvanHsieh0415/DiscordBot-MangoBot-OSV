@@ -93,14 +93,13 @@ class info(Cog_Extension):
         await ctx.send(embed=embed)
     
     @commands.command()
-    async def channel(self, ctx, *, channel:str=None):
-        c = channel
+    async def channel(self, ctx, *, channel:int=None):
         if channel == None:
             embed=discord.Embed(description='channel')
             embed.add_field(name='Text', value=len(ctx.guild.text_channel), inline=True)
             embed.add_field(name='Voice', value=len(ctx.guild.voice_channel), inline=True)
         else:
-            channel = discord.utils.get(ctx.guild.channels, name=channel)
+            channel = discord.utils.get(ctx.guild.channels, id=channel)
             embed=discord.Embed(description=channel.name)
             embed.add_field(name='Name', value=channel.name, inline=True)
             embed.add_field(name='Channel Type', value=channel.type, inline=True)

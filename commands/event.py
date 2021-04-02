@@ -1,5 +1,5 @@
 import discord
-import json, datetime
+import json, datetime, traceback
 from discord.ext import commands
 from core.classes import Cog_Extension
 
@@ -33,6 +33,10 @@ class event(Cog_Extension):
             embed=discord.Embed(title=f"{member.name} 離開了伺服器...", color=0xff0000, timestamp=datetime.datetime.now(datetime.timezone.utc))
             embed.set_thumbnail(url=f"{member.avatar_url}")
             await channel.send(embed=embed)
+    
+    @commands.Cog.listener()
+    async def on_command_error(self, ctx: commands.Context, error: commands.CommandError):
+        print(''.join(traceback.format_exception(type(error), error, error.__traceback__)))
 
 def setup(bot):
     bot.add_cog(event(bot))

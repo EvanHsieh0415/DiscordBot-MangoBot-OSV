@@ -26,6 +26,8 @@ class help(Cog_Extension):
             pass
         elif page == 6:
             pass
+        else:
+            pass
 
 
     @commands.command()

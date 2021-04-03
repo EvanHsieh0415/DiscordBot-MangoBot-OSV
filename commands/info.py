@@ -6,34 +6,6 @@ from core.classes import Cog_Extension
 with open(r'.\settings\guild_info.json', mode='r', encoding='utf8') as GuildinfoFile:
     GuildinfoData = json.load(GuildinfoFile)
 
-def member_status(member_status:str, guild):
-    member_list = []
-    for member in guild.members:
-        if str(member.status) == member_status:
-            member_list.append(member.name)
-    return member_list
-
-def role_len(role_name:str, guild):
-    role_list = []
-    for member in guild.members:
-        if role_name in member.roles.name:
-            role_list.append(member.name)
-    return role_list
-
-def bot_list(guild):
-    bot_list = []
-    for i in guild.members:
-        if i.bot == True:
-            bot_list.append(i)
-    return bot_list
-
-def real_list(guild):
-    real_list = []
-    for i in guild.members:
-        if i.bot == False:
-            real_list.append(i)
-    return real_list
-
 class info(Cog_Extension):
     @commands.command()
     async def role(self, ctx, role_name:str=None):
@@ -46,11 +18,9 @@ class info(Cog_Extension):
             embed.add_field(name='Count', value=role_count, inline=False)
             for i in range(3):
                 embed.add_field(name='===', value='-----', inline=True)
-            guild_roles = guild.roles
-            for i in range(len(guild_roles)):
-                roles = guild_roles[i]
-                if roles.name != '@everyone':
-                    embed.add_field(name=guild_roles[i], value=len(roles.members), inline=True)
+            for i in range(len(guild.roles)):
+                if guild.roles[i].name != '@everyone':
+                    embed.add_field(name=guild.roles[i], value=len(guild.roles[i].members), inline=True)
         else:
             role_member_count = len(role.members)
             embed=discord.Embed(description=role.mention)
@@ -65,12 +35,12 @@ class info(Cog_Extension):
         guild = ctx.guild
         member = discord.utils.get(guild.members, name=member_name)
         if member_name == None:
-            member_count = len(real_list(guild=guild))
-            member_bot_count = len(bot_list(guild=guild))
-            member_online = len(member_status(member_status='online', guild=guild))
-            member_idle = len(member_status(member_status='idle', guild=guild))
-            member_dnd = len(member_status(member_status='dnd', guild=guild))
-            member_offline = len(member_status(member_status='offline', guild=guild))
+            member_count = len([i for i in guild.members if i.bot == False])
+            member_bot_count = len([i for i in guild.members if i.bot])
+            member_online = len([i for i in guild.members if i.status == discord.Status.online])
+            member_idle = len([i for i in guild.members if i.status == discord.Status.idle])
+            member_dnd = len([i for i in guild.members if i.status == discord.Status.dnd])
+            member_offline = len([i for i in guild.members if i.status == discord.Status.offline])
 
             embed=discord.Embed(description='Members')
             embed.add_field(name='Member Count', value=member_count, inline=True)
@@ -85,8 +55,9 @@ class info(Cog_Extension):
             embed.set_thumbnail(url=member.avatar_url)
             embed.add_field(name='Nick', value=member.nick, inline=True)
             embed.add_field(name='ID', value=member.id, inline=True)
-            embed.add_field(name='Create at', value=member.created_at, inline=False)
-            embed.add_field(name='Join at', value=member.joined_at, inline=False)
+            embed.add_field(name='Create at', value=member.created_at.strftime(r'%Y/%m/%d %H:%M')
+            , inline=False)
+            embed.add_field(name='Join at', value=member.joined_at.strftime(r'%Y/%m/%d %H:%M'), inline=False)
             embed.add_field(name='Status', value=member.status, inline=True)
             embed.add_field(name='Activity', value=member.activity, inline=True)
             embed.add_field(name='Bot', value=member.bot, inline=True)

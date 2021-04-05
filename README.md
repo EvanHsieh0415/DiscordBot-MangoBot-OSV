@@ -14,7 +14,7 @@
 > Mango Bot - Open Sourse Version | Mango Bot - 開源版本
 
 
-借鑒名單
+致謝名單
 |Nick|Github|
 |-|-|
 |綠茶|[Proladon](https://github.com/Proladon)|

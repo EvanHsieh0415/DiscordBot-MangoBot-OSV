@@ -37,7 +37,7 @@ class experience(Cog_Extension):
         await ctx.send(f'{ctx.guild.name} 初始化完成')
     
     @commands.is_owner()
-    @exp.commadn()
+    @exp.command()
     async def clear(self, ctx, confirm):
         if confirm == True:
             ExpMemberData[str(ctx.guild.id)] = {'name': ctx.guild.name, 'index':{}}

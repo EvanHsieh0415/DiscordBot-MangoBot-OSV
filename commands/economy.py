@@ -16,18 +16,16 @@ class economy(Cog_Extension):
     @commands.is_owner()
     @ec.command()
     async def setup(self, ctx):
-        EcMemberData[str(ctx.guild.id)] = {'name': ctx.guild.name, 'index':{}}
+        EcMemberData = {'fileName': 'economy.json', 'index': {'guild': {str(ctx.guild.id): {'guildName': ctx.guild.name, 'ec':{}}}}}
         for i in ctx.guild.members:
-            if i.bot == False:
-                EcMemberData[str(ctx.guild.id)]['index'][str(i.id)] = {'name': i.name, 'money': 0}
-                print(f'Add {i.name} into \'\\data\\economy.json\'')
+            EcMemberData['index']['guild'][str(ctx.guild.id)]['ec'][str(i.id)] = {'memberName': i.name, 'money': 0}
         with open(r'.\data\economy.json', mode='w', encoding='utf8') as EcMemberFile:
             json.dump(EcMemberData, EcMemberFile, sort_keys=True, indent=4, ensure_ascii=False)
     
     @ec.command()
     async def work(self, ctx):
         Pay = random.choice(EcSettingData['work']['pay'])
-        EcMemberData[str(ctx.guild.id)] ['index'][str(ctx.author.id)]['money'] += Pay
+        EcMemberData['index']['guild'][str(ctx.guild.id)]['ec'][str(ctx.author.id)] += Pay
         await ctx.send(f'{ctx.author.name} 努力工作, 賺了{Pay}元')
         print(f'{ctx.author.name} - {ctx.author.id} work and get $ {Pay}')
         with open(r'.\data\economy.json', mode='w', encoding='utf8') as EcMemberFile:

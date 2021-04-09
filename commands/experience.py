@@ -27,10 +27,9 @@ class experience(Cog_Extension):
     @commands.is_owner()
     @exp.command()
     async def setup(self, ctx):
-        ExpMemberData[str(ctx.guild.id)] = {'name': ctx.guild.name, 'index':{}}
+        ExpMemberData = {'fileName': 'exp.json', 'index': {'guild': {str(ctx.guild.id): {'guildName': ctx.guild.name, 'exp':{}}}}}
         for i in ctx.guild.members:
-            ExpMemberData['index'][str(i.id)] = {'name': i.name, 'exp': 0, 'level': 0}
-            print(f'{i.name} setup in exp.json file')
+            ExpMemberData['index']['guild'][str(ctx.guild.id)]['exp'][str(i.id)] = {'memberName': i.name, 'exps': 0, 'levels': 0}
         with open(r'.\data\exp.json', 'w', encoding='utf8') as ExpMemberFile:
             json.dump(ExpMemberData, ExpMemberFile, sort_keys=True, indent=4)
         print(f'{ctx.guild.name} setup complete')

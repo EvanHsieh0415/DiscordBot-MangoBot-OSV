@@ -41,11 +41,12 @@ class event(Cog_Extension):
     @commands.Cog.listener()
     async def on_message(self, msg:str):
         pass
-        # if msg.author.bot == False:
-        #     expAdd = len(msg)
-        #     ExpMemberData[str(msg.guild.id)]['index'][str(msg.author.id)]['exp'] += expAdd
-        #     with open(r'.\data\exp.json', 'w', encoding='utf8') as ExpMemberFile:
-        #         json.dump(ExpMemberData, ExpMemberFile, sort_keys=True, indent=4)
+        if str(msg.guild.id) in ExpMemberData:
+            if msg.author.bot == False:
+                expAdd = len(msg.content)
+                ExpMemberData[str(msg.guild.id)]['index'][str(msg.author.id)]['exps'] += expAdd
+                with open(r'.\data\exp.json', 'w', encoding='utf8') as ExpMemberFile:
+                    json.dump(ExpMemberData, ExpMemberFile, sort_keys=True, indent=4)
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx: commands.Context, error: commands.CommandError):
@@ -56,7 +57,7 @@ class event(Cog_Extension):
     async def ver_msg(self, ctx):
         msg = await ctx.send('TEST')
         await msg.add_reaction(str(discord.utils.get(ctx.guild.emojis, name='suprised')))
-        EventData['test'] = msg.id
+        EventData[str(ctx.guild.id)]['verify']['reaction'] = msg.id
         with open(r'.\settings\event.json', mode='w', encoding='utf8') as EventFile:
             json.dump(EventData, EventFile, sort_keys=True, indent=4, ensure_ascii=False)
 
@@ -65,7 +66,7 @@ class event(Cog_Extension):
         member = data.member
         guild = member.guild
         msg = await guild.get_channel(data.channel_id).fetch_message(data.message_id)
-        if data.message_id == EventData['test'] and member.bot == False:
+        if data.message_id == EventData[str(guild.id)]['verify']['reaction'] and member.bot == False:
             if guild.get_role(830362540033835009) in member.roles:
                 if str(data.emoji.name) == "suprised":
                     await member.add_roles(guild.get_role(830362664974155806))

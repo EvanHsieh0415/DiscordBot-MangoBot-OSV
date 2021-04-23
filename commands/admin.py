@@ -35,11 +35,11 @@ class admin(Cog_Extension):
     
     @commands.has_guild_permissions(administrator=True)
     @commands.group()
-    async def set(self, ctx):
+    async def json(self, ctx):
         pass
     
-    @set.command()
-    async def json(self, ctx):
+    @json.command()
+    async def re_dump(self, ctx):
         await ctx.send('> json.dump Start')
         for Filename in os.listdir('.\\settings'):
             if Filename.endswith('.json'):
@@ -50,22 +50,6 @@ class admin(Cog_Extension):
                 await ctx.send(f'json.dump `{Filename}`')
                 print(f'json.dump {Filename}')
         await ctx.send('> json.dump all complete')
-    
-    @set.command()
-    async def event(self, ctx, set_type:str=None, ch_id:int=None):
-        with open('.\\settings\\event.json', mode='r', encoding='utf8') as EventFile:
-            EventData = json.load(EventFile)
-        if set_type == None:
-            text = EventData[ctx.guild.id]
-            await ctx.send(json.dump(text, sort_keys=True, indent=4, ensure_ascii=False))
-        else:
-            if set_type in EventData[str(ctx.guild.id)]['feedback']:
-                if set_type == 'join':
-                    EventData[str(ctx.guild.id)]['feedback']['join']['channel'] = ch_id
-                elif set_type == 'leave':
-                    EventData[str(ctx.guild.id)]['feedback']['leave']['channel'] = ch_id
-                print(f'{ctx.member.name} edit {ctx.guild.name}\'s {set_type} channel ID: {ch_id}')
-                await ctx.send(f'Edit {ctx.guild.name}\'s {set_type} channel ID: {ch_id}')
 
 def setup(bot):
     bot.add_cog(admin(bot))

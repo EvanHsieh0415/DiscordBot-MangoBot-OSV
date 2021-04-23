@@ -29,15 +29,6 @@
         },
         "guild_name": "猴子 程式交流會"
     },
-    "on_ready": {
-        "feedback": {
-            "channel": [
-                814811620206575677,
-                808247674620215326
-            ],
-            "enable": true
-        }
-    },
     "824604047876947968": {
         "feedback": {
             "enable": true,
@@ -52,5 +43,14 @@
             }
         },
         "guild_name": "阿無的小教室"
+    },
+    "on_ready": {
+        "feedback": {
+            "channel": [
+                814811620206575677,
+                808247674620215326
+            ],
+            "enable": true
+        }
     }
 }

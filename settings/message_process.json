@@ -24,5 +24,10 @@
                 }
             }
         }
+    },
+    "encrypt":{
+        "list":[
+            "ASCII", "base64"
+        ]
     }
 }

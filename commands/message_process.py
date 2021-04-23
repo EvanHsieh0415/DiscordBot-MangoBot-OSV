@@ -1,5 +1,5 @@
 import discord
-import json
+import json, base64
 from discord.ext import commands
 from core.classes import Cog_Extension
 
@@ -16,7 +16,7 @@ class message_process(Cog_Extension):
             await ctx.send(f'{msg} 無法發送')
         else:
             print(f'>>>{ctx.author} 於伺服器 {ctx.guild.name} ( {ctx.guild.id} ) 說: \n> {msg}')
-    
+
     @commands.command()
     async def pipe_mail(self, ctx, pipe, *, msg):
         if pipe in MessageData['mail']['connect']['pipe']:
@@ -33,24 +33,30 @@ class message_process(Cog_Extension):
                 await ctx.send(f'{msg} 無法發送, 請確認輸入端位置是否正確')
         else:
             await ctx.send(f'{msg} 無法發送, 請確認通訊頻道是否正確')
-    
+
     @commands.command()
-    async def dm(sellf, ctx, memberID:int=None, *, message:str=None):
-        if memberID == None:
-            await ctx.send('[ERROR] member not entered')
-            print(f'[ERROR] member not endered ({ctx.author.name})')
-        elif message == None:
-            await ctx.send('[ERROR] message not entered')
-            print(f'[ERROR] message not endered ({ctx.author.name})')
-        else:
-            memberg = discord.utils.get(ctx.guild.members, id=memberID)
-            if memberg == None:
-                await ctx.send(f'[ERROR] can not find member: `{memberID}`')
-                print(f'[ERROR] can not find member: {memberID}')
+    async def Mencode(self, ctx, encryptType:str=False, *, password:str=False):
+        output = ''
+        encryptTypeList = ['ASCII']
+        if encryptType in MessageData['encrypt']['list']:
+            if password:
+                if encryptType == 'ASCII':
+                    l = []
+                    for i in password:
+                        l.append(str(ord(i)))
+                    output = '-'.join(l)
+                elif encryptType == 'base64':
+                    output = str(base64.b64encode(password.encode()), 'utf8')
+                await ctx.author.send(f'> **Mango Bot加密系統**\n原文：`{password}`\n加密方式：`{encryptType}`\n密文`{output}`')
+                print(f'{ctx.author} 使用了 Mango Bot加密系統\n原文：`{password}`\n加密方式：`{encryptType}`\n密文`{output}`')
             else:
-                await ctx.send(f'已成功傳送訊息給 `{memberg.name}`')
-                await memberg.send(message)
-                print(f'{ctx.author.name} send msg to {memberg.name} success')
+                await ctx.author.send(f'> **Mango Bot加密系統**\n請輸入加密內容')
+        else:
+            if encryptTypeList:
+                await ctx.author.send(f'> **Mango Bot加密系統**\n加密方式 {encryptType} 尚未收編進加密辭典中 請與機器人技術人員聯繫')
+            else:
+                await ctx.author.send(f'> **Mango Bot加密系統**\n請輸入加密方式')
+        
 
 def setup(bot):
     bot.add_cog(message_process(bot))

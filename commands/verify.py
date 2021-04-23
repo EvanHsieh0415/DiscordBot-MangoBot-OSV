@@ -7,10 +7,8 @@ def verify_setting(ctx, setType:str, limit:int=''):
     if setType in ['longer', 'digit', 'set_all']:
         with open(r'.\settings\verification.json', mode='r', encoding='utf8') as verifySetFile:
             verifySetData = json.load(verifySetFile)
-        if setType == 'longer':
-            verifySetData[str(ctx.guild.id)]['index']['longe'] = limit
-        elif setType == 'digit':
-            verifySetData[str(ctx.guild.id)]['index']['digit'] = limit
+        if setType in ['longer', 'digit']:
+            verifySetData[str(ctx.guild.id)]['index'][setType] = limit
         elif setType == 'set_all':
             verifySetData[str(ctx.guild.id)] = {'name':ctx.guild.name, 'index': {'longer': 4, 'digit': 4}}
         with open(r'.\settings\verification.json', mode='w', encoding='utf8') as verifySetFile:

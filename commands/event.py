@@ -37,13 +37,13 @@ class event(Cog_Extension):
             embed.set_thumbnail(url=f"{member.avatar_url}")
             await channel.send(embed=embed)
 
-    @commands.Cog.listener()
-    async def on_message(self, msg:str):
-        if msg.author.bot == False:
-            expAdd = len(msg)
-            ExpMemberData[str(msg.guild.id)]['index'][str(msg.author.id)]['exp'] += expAdd
-            with open(r'.\data\exp.json', 'w', encoding='utf8') as ExpMemberFile:
-                json.dump(ExpMemberData, ExpMemberFile, sort_keys=True, indent=4)
+    # @commands.Cog.listener()
+    # async def on_message(self, msg:str):
+    #     if msg.author.bot == False:
+    #         expAdd = len(msg)
+    #         ExpMemberData[str(msg.guild.id)]['index'][str(msg.author.id)]['exp'] += expAdd
+    #         with open(r'.\data\exp.json', 'w', encoding='utf8') as ExpMemberFile:
+    #             json.dump(ExpMemberData, ExpMemberFile, sort_keys=True, indent=4)
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx: commands.Context, error: commands.CommandError):

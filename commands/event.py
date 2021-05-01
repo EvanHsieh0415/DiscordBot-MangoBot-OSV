@@ -19,7 +19,7 @@ def channel_function(event_type:str, member, self):
 class event(Cog_Extension):
     @commands.Cog.listener()
     async def on_member_join(self, member):
-        await member.add_role(guild.get_role(830362540033835009))
+        await member.add_role(member.guild.get_role(830362540033835009))
         print(f'{member} join {member.guild.name}!')
         if EventData[str(member.guild.id)]['feedback']['enable'] == True:
             channel = channel_function(event_type='join', member=member, self=self)

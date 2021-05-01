@@ -38,7 +38,7 @@ class event(Cog_Extension):
             embed.set_thumbnail(url=f"{member.avatar_url}")
             await channel.send(embed=embed)
 
-    @commands.Cog.listener()
+"""     @commands.Cog.listener()
     async def on_message(self, msg:str):
         pass
         if str(msg.guild.id) in ExpMemberData:
@@ -46,7 +46,7 @@ class event(Cog_Extension):
                 expAdd = len(msg.content)
                 ExpMemberData[str(msg.guild.id)]['index'][str(msg.author.id)]['exps'] += expAdd
                 with open(r'.\data\exp.json', 'w', encoding='utf8') as ExpMemberFile:
-                    json.dump(ExpMemberData, ExpMemberFile, sort_keys=True, indent=4)
+                    json.dump(ExpMemberData, ExpMemberFile, sort_keys=True, indent=4) """
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx: commands.Context, error: commands.CommandError):

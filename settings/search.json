@@ -1,15 +1,18 @@
 {
     "search_image": {
         "google": "https://i.imgur.com/bM31b3K.png",
-        "wikipedia": "https://i.imgur.com/UMaBtez.png"
+        "wikipedia": "https://i.imgur.com/UMaBtez.png",
+        "nhentai": "https://pbs.twimg.com/profile_images/1337857299147333633/c9yqpu_u_400x400.jpg"
     },
     "search_link": {
         "google": "http://www.google.com",
-        "wikipedia": "https://zh.wikipedia.org"
+        "wikipedia": "https://zh.wikipedia.org",
+        "nhentai": "https://nhentai.net"
     },
     "search_list": [
         "google",
-        "wikipedia"
+        "wikipedia",
+        "nhentai"
     ],
     "search_name": {
         "google": {
@@ -19,10 +22,15 @@
         "wikipedia": {
             "en_name": "Wikipedia",
             "zh_name": "維基百科"
+        },
+        "nhentai": {
+            "en_name": "NHentai",
+            "zh_name": "N站"
         }
     },
     "search_prefix": {
         "google": "/search?q=",
-        "wikipedia": "/w/index.php?search="
+        "wikipedia": "/w/index.php?search=",
+        "nhentai": "/search/?q="
     }
 }

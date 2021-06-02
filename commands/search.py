@@ -31,8 +31,12 @@ class search(Cog_Extension):
         await ctx.send(embed=Search('google', ctx, arg))
 
     @commands.command()
-    async def wiki(self, ctx, arg:str=''):        
+    async def wiki(self, ctx, arg:str=''):
         await ctx.send(embed=Search('wikipedia', ctx, arg))
+
+    @commands.command()
+    async def nhentai(self, ctx, arg:str=''):
+        await ctx.send(embed=Search('nhentai', ctx, arg))
 
 def setup(bot):
     bot.add_cog(search(bot))

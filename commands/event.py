@@ -46,7 +46,7 @@ class event(Cog_Extension):
                 expAdd = len(msg.content)
                 ExpMemberData[str(msg.guild.id)]['index'][str(msg.author.id)]['exps'] += expAdd
                 with open(r'.\data\exp.json', 'w', encoding='utf8') as ExpMemberFile:
-                    json.dump(ExpMemberData, ExpMemberFile, sort_keys=True, indent=4) """
+                    json.dump(ExpMemberData, ExpMemberFile, sort_keys=True, indent=4)
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx: commands.Context, error: commands.CommandError):
@@ -71,7 +71,7 @@ class event(Cog_Extension):
                 if str(data.emoji.name) == "suprised":
                     await member.add_roles(guild.get_role(830362664974155806))
                     await member.remove_roles(guild.get_role(830362540033835009))
-            await msg.remove_reaction(member=data.member, emoji=data.emoji)
+            await msg.remove_reaction(member=data.member, emoji=data.emoji) """
 
 def setup(bot):
     bot.add_cog(event(bot))
